@@ -22,10 +22,11 @@ GLuint Shader::createShaderObject(GLenum type, std::string sourcePath)
 	glGetShaderiv(shaderID, GL_COMPILE_STATUS, &compileResult);
 	if (compileResult) //GL_TRUE
 		return shaderID;
-	char errorMsg[1024];
+	char errorMsg[1024]{ 0 };
 	glGetShaderInfoLog(shaderID, 1024, nullptr, errorMsg);
 	std::ofstream crash_log("crash_" + std::to_string(time(nullptr)) + ".log");
-	crash_log << "Compilation error: sourceFile - " << sourcePath << " " << "\nLOG:" << errorMsg;
+	printf("Failed to compile %s:\n%s",sourcePath.c_str(), errorMsg);
+	crash_log << "Compilation error: sourceFile - " << sourcePath << " " << "\nLOG:\n"<<errorMsg;
 	crash_log.close();
 	return 0;
 }
@@ -34,21 +35,11 @@ bool Shader::load(std::string vertexShaderName, std::string fragmentShaderName)
 {
 	GLuint vertexShader = createShaderObject(GL_VERTEX_SHADER, vertexShaderName);
 	if (!vertexShader)
-	{
-		std::ofstream crash_log("crash_" + std::to_string(time(nullptr)) + ".log");
-		crash_log << "Compilation error: vertex shader sourceFile - " << vertexShaderName;
-	//	std::cout << "A crash has occured. View " << crashLogFilename << " for more details.";
-		crash_log.close();
 		return false;
-	}
 
 	GLuint fragmentShader = createShaderObject(GL_FRAGMENT_SHADER, fragmentShaderName);
 	if (!fragmentShader)
 	{
-		std::ofstream crash_log("crash_" + std::to_string(time(nullptr)) + ".log");
-		crash_log << "Compilation error: fragment shader sourceFile - " << fragmentShaderName;
-	//	std::cout << "A crash has occured. View " << crashLogFilename << " for more details.";
-		crash_log.close();
 		glDeleteShader(vertexShader);
 		return false;
 	}
@@ -78,8 +69,9 @@ bool Shader::load(std::string vertexShaderName, std::string fragmentShaderName)
 	std::string crashLogFilename = "crash_" + std::to_string(time(nullptr)) + ".log";
 	glGetProgramInfoLog(this->program, 1024, nullptr, errorMsg);
 	std::ofstream crash_log(crashLogFilename);
-	crash_log << "Linking error: sourceFiles - " << fragmentShaderName << "," << vertexShaderName<< "\nLOG:" << errorMsg;
-//	std::cout << "A crash has occured. View " << crashLogFilename << " for more details.";
+	printf("%s", errorMsg);
+	crash_log << "Linking error: sourceFiles - " << fragmentShaderName << "," << vertexShaderName<< "\nLOG:\n" << errorMsg;
+	printf("A crash has occured. Saved crash info in file: %s.",crashLogFilename.c_str());
 	crash_log.close();
 	glDeleteShader(vertexShader);
 	glDeleteShader(fragmentShader);
