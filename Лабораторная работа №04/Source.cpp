@@ -27,9 +27,6 @@ int getFPS()
 		QueryPerformanceCounter(&startCounter);
 		FPS = frameCount;
 		frameCount = 0;
-		//static int i = 0;
-		//camera.lookAt(graphicObjects[i].getPosition()); //testing stuff
-		//i=(i+1)%graphicObjects.size();
 	}
 	return FPS;
 }
@@ -47,11 +44,10 @@ void display()
 	glEnable(GL_CULL_FACE);
 	glCullFace(GL_BACK);
 
-	glm::mat4 projectionMatrix = camera.getProjectionMatrix();
 	glm::mat4 viewMatrix = camera.getViewMatrix();
 
 	shader.activate();
-	shader.setUniform("projMatrix", camera.getProjectionMatrix());
+	shader.setUniform("projectionMatrix", camera.getProjectionMatrix());
 	for (auto& graphObj : graphicObjects) 
 	{
 		shader.setUniform("modelViewMatrix", viewMatrix * graphObj.getModelMatrix());
@@ -63,7 +59,7 @@ void display()
 
 	char temp[80];
 	int FPS = getFPS();
-	sprintf_s(temp, "Lab3 FPS[%d]", FPS);
+	sprintf_s(temp, "Lab4 FPS[%d]", FPS);
 	glutSetWindowTitle(temp);
 }
 

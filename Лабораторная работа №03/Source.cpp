@@ -27,9 +27,6 @@ int getFPS()
 		QueryPerformanceCounter(&startCounter);
 		FPS = frameCount;
 		frameCount = 0;
-		//static int i = 0;
-		//camera.lookAt(graphicObjects[i].getPosition()); //testing stuff
-		//i=(i+1)%graphicObjects.size();
 	}
 	return FPS;
 }
@@ -47,11 +44,9 @@ void display()
 	glEnable(GL_CULL_FACE);
 	glCullFace(GL_BACK);
 
-	glm::mat4 projectionMatrix = camera.getProjectionMatrix();
-	glm::mat4 viewMatrix = camera.getViewMatrix();
-
 	shader.activate();
-	shader.setUniform("projMatrix", camera.getProjectionMatrix());
+	glm::mat4 viewMatrix = camera.getViewMatrix();
+	shader.setUniform("projectionMatrix", camera.getProjectionMatrix());
 	for (auto& graphObj : graphicObjects) 
 	{
 		shader.setUniform("modelViewMatrix", viewMatrix * graphObj.getModelMatrix());
@@ -105,7 +100,6 @@ void simulation()
 	prevTime = currTime.QuadPart;
 
 	mouseMovement();
-
 	float speedX = (GetAsyncKeyState(VK_DOWN) + (GetAsyncKeyState(VK_UP)) * (-1)) * 0.0005f * deltaTime, 
 		  speedZ = (GetAsyncKeyState(VK_LEFT) + (GetAsyncKeyState(VK_RIGHT)) * (-1)) * 0.0002f * deltaTime;
 	camera.moveOXZ(speedX,speedZ);
