@@ -77,7 +77,7 @@ void reshape(int w, int h)
 
 // функция вызывается когда процессор простаивает, т.е. максимально часто
 
-inline float changeDirection(float pos, float speed, float deltaTime, float boundary)
+inline float changeDirection(float pos, float& speed, float deltaTime, float boundary)
 {
 	float newPos = pos + speed * deltaTime;
 	if (newPos - boundary > 0)

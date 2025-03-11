@@ -62,6 +62,7 @@ bool Shader::load(std::string vertexShaderName, std::string fragmentShaderName)
 
 		glDeleteShader(vertexShader);
 		glDeleteShader(fragmentShader);
+		printf("Shader compiled. Program ID - %d", this->program);
 		return true;
 	}
 
