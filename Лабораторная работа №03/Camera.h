@@ -16,7 +16,7 @@ public:
 private:
 	void recalculateViewMatrix();
 
-	float distance;
+	float fov;
 
 	glm::mat4 projectionMatrix;
 	glm::mat4 viewMatrix;

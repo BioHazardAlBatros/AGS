@@ -142,7 +142,8 @@ void main(int argc, char** argv)
 	printf("OpenGL Version = %s\n\n", glGetString(GL_VERSION));
 
 	// загрузка шейдера
-	shader.load(R"(assets\shaders\Example.vsh)", R"(assets\shaders\Example.fsh)");
+	if (!shader.load(R"(assets\shaders\Example.vsh)", R"(assets\shaders\Example.fsh)"))
+		return;
 
 	QueryPerformanceCounter(&startCounter);
 	QueryPerformanceFrequency(&frequency);

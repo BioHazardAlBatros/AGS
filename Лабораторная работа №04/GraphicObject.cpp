@@ -26,6 +26,11 @@ float GraphicObject::getAngle()
 	return this->angle;
 }
 
+int GraphicObject::getMeshId()
+{
+	return this->meshId;
+}
+
 void GraphicObject::setColor(glm::vec4 color) 
 {
 	this->color = color;
@@ -41,4 +46,9 @@ void GraphicObject::setAngle(float degree)
 {
 	this->angle = degree;
 	this->modelMatrix = glm::rotate(this->modelMatrix, this->angle, glm::vec3(0.0f, 1.0f, 0.0f));
+}
+
+void GraphicObject::setMeshId(int newId)
+{
+	this->meshId = newId;
 }

@@ -4,9 +4,9 @@ Camera::Camera()
 {
 	this->position = glm::vec3({ 0.0,3.0,5.0 });
 	lookAt({ 0.0,0.0,0.0 });
-	this->distance = 35.0f;
+	this->fov = 35.0f;
 
-	setProjectionMatrix(this->distance, 800.0 / 600.0, 1.0, 100.0);
+	setProjectionMatrix(this->fov, 800.0 / 600.0, 1.0, 100.0);
 	recalculateViewMatrix();
 }
 
@@ -48,7 +48,7 @@ void Camera::rotate(float horizAngle, float vertAngle)
 }
 void Camera::zoom(float dR) 
 {
-//	this->distance = std::max(1.0f, std::min(this->distance - dR, 90.0f));
+//	this->distance = std::max(1.0f, std::min(this->distance - dR, 360.0f));
 //	setProjectionMatrix(this->distance, 800.0 / 600.0, 1.0, 100.0);
 	this->position += this->fwdDirection * dR;
 	recalculateViewMatrix();

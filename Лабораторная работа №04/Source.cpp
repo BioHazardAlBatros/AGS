@@ -2,12 +2,14 @@
 #include "drawBox.h"
 #include "Camera.h"
 #include "GraphicObject.h"
+#include "ResourceManager.h"
 
 
 LARGE_INTEGER startCounter, frequency;
 Camera camera;
 Shader shader;
 std::vector<GraphicObject> graphicObjects;
+ResourceManager& rm = ResourceManager::instance();
 
 double getSimulationTime()
 {
@@ -19,7 +21,6 @@ double getSimulationTime()
 int getFPS()
 {
 	static int frameCount = 0;
-	//static int halfSecond = frequency.QuadPart / 2;
 	static int FPS = 0;
 	++frameCount;
 	if (getSimulationTime() >= frequency.QuadPart)
@@ -31,7 +32,6 @@ int getFPS()
 	return FPS;
 }
 
-void drawObject();
 
 void display()
 {
@@ -48,16 +48,18 @@ void display()
 
 	shader.activate();
 	shader.setUniform("projectionMatrix", camera.getProjectionMatrix());
+
 	for (auto& graphObj : graphicObjects) 
 	{
 		shader.setUniform("modelViewMatrix", viewMatrix * graphObj.getModelMatrix());
 		shader.setUniform("color", graphObj.getColor());
-		drawBox();
+		Mesh* mesh = rm.getMesh(graphObj.getMeshId());
+		if (mesh) mesh->drawOne();
 	}
 
 	glutSwapBuffers();
 
-	char temp[80];
+	char temp[40];
 	int FPS = getFPS();
 	sprintf_s(temp, "Lab4 FPS[%d]", FPS);
 	glutSetWindowTitle(temp);
@@ -71,9 +73,8 @@ void reshape(int w, int h)
 
 void mouseZoom(int wheel, int dir, int x, int y)
 {
-	//float delta = 2*dir;
 	float delta = 0.5f*dir;
-	printf("Zooming %s\n",(dir==1)?"in":"out");
+//	printf("Zooming %s\n",(dir==1)?"in":"out");
 	camera.zoom(delta);
 }
 
@@ -109,6 +110,8 @@ void simulation()
 	glutPostRedisplay();
 };
 
+void initGraphicObjects();
+
 void main(int argc, char** argv)
 {
 	glutInit(&argc, argv);
@@ -127,27 +130,11 @@ void main(int argc, char** argv)
 	}
 	printf("OpenGL Version = %s\n\n", glGetString(GL_VERSION));
 
-	shader.load(R"(assets\shaders\VertexShader.vsh)", R"(assets\shaders\FragmentShader.fsh)");
+	if (!shader.load(R"(assets\shaders\VertexShader.vsh)", R"(assets\shaders\FragmentShader.fsh)"))
+		return; //MANUAL EXIT IF SHADER DIDN'T COMPILE
+
+	initGraphicObjects();
 	
-	//creating objects
-	for (int i = 0; i < 12; i++)
-	{
-		//circle
-		graphicObjects.emplace_back();
-		graphicObjects.back().setPosition({3 * cos((3.1415 / 6.0) * i), 0, 3 * sin((3.1415 / 6.0) * i)});
-		graphicObjects.back().setAngle(14.0f * i);
-		graphicObjects.back().setColor({ 1.0/(i+1),0 ,0,1});
-	}
-
-	graphicObjects.emplace_back();
-	graphicObjects.emplace_back();
-	graphicObjects.back().setPosition({0.0f,1.0f,0.0f});
-	graphicObjects.emplace_back();
-	graphicObjects.back().setPosition({ 1.5f,0.0f,0.0f });
-	graphicObjects.back().setAngle(45.0f);
-	graphicObjects.back().setColor({ 0.0f,0.7f,0.0f,1.0f });
-	//
-
 	QueryPerformanceCounter(&startCounter);
 	QueryPerformanceFrequency(&frequency);
 	
@@ -159,46 +146,89 @@ void main(int argc, char** argv)
 	return;
 }
 
-// функция для вывода квадрата с ребрами равными единице (от -0.5 до +0.5)
-void drawObject()
+//void drawObject()
+//{
+//	static bool init = true;
+//	static GLuint VAO_Index = 0;		// индекс VAO-буфера
+//	static GLuint VBO_Index = 0;		// индекс VBO-буфера
+//	static int VertexCount = 0;			// количество вершин
+//	if (init) {
+//		init = false;
+//		glGenBuffers(1, &VBO_Index);
+//		glBindBuffer(GL_ARRAY_BUFFER, VBO_Index);
+//		GLfloat	Verteces[] = {
+//			-0.5,	+0.5,
+//			-0.5,	-0.5,
+//			+0.5,	+0.5,
+//			+0.5,	+0.5,
+//			-0.5,	-0.5,
+//			+0.5,	-0.5
+//		};
+//		glBufferData(GL_ARRAY_BUFFER, sizeof(Verteces), Verteces, GL_STATIC_DRAW);
+//
+//		// создание VAO
+//		glGenVertexArrays(1, &VAO_Index);
+//		glBindVertexArray(VAO_Index);
+//		// заполнение VAO
+//		glBindBuffer(GL_ARRAY_BUFFER, VBO_Index);
+//		glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 0, 0);
+//		glEnableVertexAttribArray(0);
+//		// "отвязка" буфера VAO, чтоб случайно не испортить
+//		glBindVertexArray(0);
+//
+//		// указание количество вершин
+//		VertexCount = 6;
+//	}
+//
+//	// выводим прямоугольник
+//	glBindVertexArray(VAO_Index);
+//	glDrawArrays(GL_TRIANGLES, 0, 6);
+//}
+
+void initGraphicObjects()
 {
-	// переменные для вывода объекта (прямоугольника из двух треугольников)
-	static bool init = true;
-	static GLuint VAO_Index = 0;		// индекс VAO-буфера
-	static GLuint VBO_Index = 0;		// индекс VBO-буфера
-	static int VertexCount = 0;			// количество вершин
+	ResourceManager& rm = ResourceManager::instance();
+	GraphicObject gObj;
 
-	// при первом вызове инициализируем VBO и VAO
-	if (init) {
-		init = false;
-		// создание и заполнение VBO
-		glGenBuffers(1, &VBO_Index);
-		glBindBuffer(GL_ARRAY_BUFFER, VBO_Index);
-		GLfloat	Verteces[] = {
-			-0.5,	+0.5,
-			-0.5,	-0.5,
-			+0.5,	+0.5,
-			+0.5,	+0.5,
-			-0.5,	-0.5,
-			+0.5,	-0.5
-		};
-		glBufferData(GL_ARRAY_BUFFER, sizeof(Verteces), Verteces, GL_STATIC_DRAW);
+	//1
+	gObj.setMeshId(rm.loadMesh(R"(assets\meshes\buildings\house_2.obj)"));
+	gObj.setColor(glm::vec4{ 0.2, 0.2, 0.2, 1 });
+	gObj.setPosition(glm::vec3{ 0, 0, 0 });
+	gObj.setAngle(0.0);
+	graphicObjects.push_back(gObj);
 
-		// создание VAO
-		glGenVertexArrays(1, &VAO_Index);
-		glBindVertexArray(VAO_Index);
-		// заполнение VAO
-		glBindBuffer(GL_ARRAY_BUFFER, VBO_Index);
-		glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 0, 0);
-		glEnableVertexAttribArray(0);
-		// "отвязка" буфера VAO, чтоб случайно не испортить
-		glBindVertexArray(0);
+	//2
+	gObj.setMeshId(rm.loadMesh(R"(assets\meshes\natures\big_tree.obj)"));
+	gObj.setColor(glm::vec4{ 0.2, 0.8, 0.2, 1 });
+	gObj.setPosition(glm::vec3{ 7.5, -0.75, 2.5 });
+	gObj.setAngle(0.0);
+	graphicObjects.push_back(gObj);
 
-		// указание количество вершин
-		VertexCount = 6;
-	}
+	//3
+	gObj.setMeshId(rm.loadMesh(R"(assets\meshes\natures\big_tree.obj)"));
+	gObj.setColor(glm::vec4{ 0.2, 0.8, 0.2, 1 });
+	gObj.setPosition(glm::vec3{ -7.5, -0.75, 2.5 });
+	gObj.setAngle(0.0);
+	graphicObjects.push_back(gObj);
 
-	// выводим прямоугольник
-	glBindVertexArray(VAO_Index);
-	glDrawArrays(GL_TRIANGLES, 0, 6);
+	//4
+	gObj.setMeshId(rm.loadMesh(R"(assets\meshes\vehicles\police_car.obj)"));
+	gObj.setColor(glm::vec4{ 0.2, 0.2, 1.0, 1 });
+	gObj.setPosition(glm::vec3{ +4.5, -2.15, +6.5 });
+	gObj.setAngle(-115.0);
+	graphicObjects.push_back(gObj);
+
+	//5
+	gObj.setMeshId(rm.loadMesh(R"(assets\meshes\vehicles\police_car.obj)"));
+	gObj.setColor(glm::vec4{0.23, 0.23, 1.0, 1});
+	gObj.setPosition(glm::vec3{ +4.25, -2.15, +10.5 });
+	gObj.setAngle(+105.0);
+	graphicObjects.push_back(gObj);
+
+	//6
+	gObj.setMeshId(rm.loadMesh(R"(assets\meshes\vehicles\jeep.obj)"));
+	gObj.setColor(glm::vec4{ 0.95, 0.13, 0.13, 1 });
+	gObj.setPosition(glm::vec3{ -1.25, -2.15, +9.0 });
+	gObj.setAngle(+170.0);
+	graphicObjects.push_back(gObj);
 }

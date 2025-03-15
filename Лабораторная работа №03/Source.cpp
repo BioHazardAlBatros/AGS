@@ -100,8 +100,8 @@ void simulation()
 	prevTime = currTime.QuadPart;
 
 	mouseMovement();
-	float speedX = (GetAsyncKeyState(VK_DOWN) + (GetAsyncKeyState(VK_UP)) * (-1)) * 0.0005f * deltaTime, 
-		  speedZ = (GetAsyncKeyState(VK_LEFT) + (GetAsyncKeyState(VK_RIGHT)) * (-1)) * 0.0002f * deltaTime;
+	float speedX = (GetAsyncKeyState(VK_DOWN) + GetAsyncKeyState(VK_UP) * (-1)) * 0.0005f * deltaTime, 
+		  speedZ = (GetAsyncKeyState(VK_LEFT) + GetAsyncKeyState(VK_RIGHT) * (-1)) * 0.0002f * deltaTime;
 	camera.moveOXZ(speedX,speedZ);
 	
 	glutPostRedisplay();
@@ -125,7 +125,8 @@ void main(int argc, char** argv)
 	}
 	printf("OpenGL Version = %s\n\n", glGetString(GL_VERSION));
 
-	shader.load(R"(assets\shaders\VertexShader.vsh)", R"(assets\shaders\FragmentShader.fsh)");
+	if (!shader.load(R"(assets\shaders\VertexShader.vsh)", R"(assets\shaders\FragmentShader.fsh)"))
+		return;
 	
 	//creating objects
 	for (int i = 0; i < 12; i++)
