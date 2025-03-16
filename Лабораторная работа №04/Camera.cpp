@@ -4,9 +4,9 @@ Camera::Camera()
 {
 	this->position = glm::vec3({ 0.0,3.0,5.0 });
 	lookAt({ 0.0,0.0,0.0 });
-	this->distance = 35.0f;
+	this->fov = 35.0f;
 
-	setProjectionMatrix(this->distance, 800.0 / 600.0, 1.0, 100.0);
+	setProjectionMatrix(this->fov, 800.0 / 600.0, 1.0, 100.0);
 	recalculateViewMatrix();
 }
 

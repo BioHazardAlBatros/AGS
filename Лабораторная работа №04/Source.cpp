@@ -1,5 +1,4 @@
 #include "Shader.h"
-#include "drawBox.h"
 #include "Camera.h"
 #include "GraphicObject.h"
 #include "ResourceManager.h"
@@ -59,7 +58,7 @@ void display()
 
 	glutSwapBuffers();
 
-	char temp[40];
+	char temp[80];
 	int FPS = getFPS();
 	sprintf_s(temp, "Lab4 FPS[%d]", FPS);
 	glutSetWindowTitle(temp);
@@ -131,7 +130,7 @@ void main(int argc, char** argv)
 	printf("OpenGL Version = %s\n\n", glGetString(GL_VERSION));
 
 	if (!shader.load(R"(assets\shaders\VertexShader.vsh)", R"(assets\shaders\FragmentShader.fsh)"))
-		return; //MANUAL EXIT IF SHADER DIDN'T COMPILE
+		return; //MANUAL EXIT IF SHADERS DIDN'T COMPILE
 
 	initGraphicObjects();
 	
@@ -145,45 +144,6 @@ void main(int argc, char** argv)
 	glutMainLoop();
 	return;
 }
-
-//void drawObject()
-//{
-//	static bool init = true;
-//	static GLuint VAO_Index = 0;		// индекс VAO-буфера
-//	static GLuint VBO_Index = 0;		// индекс VBO-буфера
-//	static int VertexCount = 0;			// количество вершин
-//	if (init) {
-//		init = false;
-//		glGenBuffers(1, &VBO_Index);
-//		glBindBuffer(GL_ARRAY_BUFFER, VBO_Index);
-//		GLfloat	Verteces[] = {
-//			-0.5,	+0.5,
-//			-0.5,	-0.5,
-//			+0.5,	+0.5,
-//			+0.5,	+0.5,
-//			-0.5,	-0.5,
-//			+0.5,	-0.5
-//		};
-//		glBufferData(GL_ARRAY_BUFFER, sizeof(Verteces), Verteces, GL_STATIC_DRAW);
-//
-//		// создание VAO
-//		glGenVertexArrays(1, &VAO_Index);
-//		glBindVertexArray(VAO_Index);
-//		// заполнение VAO
-//		glBindBuffer(GL_ARRAY_BUFFER, VBO_Index);
-//		glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 0, 0);
-//		glEnableVertexAttribArray(0);
-//		// "отвязка" буфера VAO, чтоб случайно не испортить
-//		glBindVertexArray(0);
-//
-//		// указание количество вершин
-//		VertexCount = 6;
-//	}
-//
-//	// выводим прямоугольник
-//	glBindVertexArray(VAO_Index);
-//	glDrawArrays(GL_TRIANGLES, 0, 6);
-//}
 
 void initGraphicObjects()
 {
@@ -231,4 +191,6 @@ void initGraphicObjects()
 	gObj.setPosition(glm::vec3{ -1.25, -2.15, +9.0 });
 	gObj.setAngle(+170.0);
 	graphicObjects.push_back(gObj);
+	
+	printf("\nInitialization complete.");
 }
