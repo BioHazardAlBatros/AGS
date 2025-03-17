@@ -1,0 +1,20 @@
+# Mesh: natures_grass_tile
+
+# List of geometric vertices
+v -5.2493 -0.0000 5.2493
+v 5.2493 -0.0000 5.2493
+v 5.2493 0.0000 -5.2493
+v -5.2493 0.0000 -5.2493
+
+# List of vertex normals
+vn 0.0000 1.0000 0.0000
+
+# List of texture coordinates
+vt 0.9065 0.8839
+vt 0.8566 0.9339
+vt 0.8566 0.8839
+vt 0.9065 0.9339
+
+# List of polygonal faces
+f 2/1/1 4/2/1 1/3/1
+f 2/1/1 3/4/1 4/2/1
