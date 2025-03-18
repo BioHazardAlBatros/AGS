@@ -20,3 +20,10 @@
 #include <map>
 #include <unordered_map>
 
+#include <IL/il.h>
+#include <IL/ilu.h>
+#include <IL/ilut.h>
+
+
+double getSimulationTime();
+int getFPS();

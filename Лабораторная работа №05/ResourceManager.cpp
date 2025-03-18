@@ -7,7 +7,7 @@ int ResourceManager::loadMesh(std::string sourceFile)
 	auto meshPair = this->meshes_id.find(sourceFile);
 	if (meshPair != this->meshes_id.end())
 	{
-		printf("This file is already loaded.\n");
+		printf("This mesh is already loaded.\n");
 		printf("Mesh ID - %d\n", meshPair->second);
 		return meshPair->second;
 	}
@@ -34,7 +34,7 @@ int ResourceManager::loadTexture(std::string sourceFile)
 	auto texPair = this->textures_id.find(sourceFile);
 	if (texPair != this->textures_id.end())
 	{
-		printf("This file is already loaded.\n");
+		printf("This texture is already loaded.\n");
 		printf("Texture ID - %d\n", texPair->second);
 		return texPair->second;
 	}

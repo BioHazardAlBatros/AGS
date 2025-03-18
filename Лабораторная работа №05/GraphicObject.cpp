@@ -57,3 +57,8 @@ void GraphicObject::setMeshId(int newId)
 {
 	this->meshId = newId;
 }
+
+void GraphicObject::setTextureId(int newId)
+{
+	this->textureId = newId;
+}

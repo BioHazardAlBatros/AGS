@@ -4,16 +4,18 @@
 #include "Camera.h"
 #include "Shader.h"
 #include "GraphicObject.h"
+#include "ResourceManager.h"
 
 class RenderManager
 {
-	RenderManager() {};
-	RenderManager(const RenderManager& root) = delete;
-	RenderManager& operator=(const RenderManager&) = delete;
-
+	ResourceManager& rm;
 	Camera* camera;
 	std::vector<Shader> shaders;
 	std::vector<GraphicObject> graphicObjects;
+
+	RenderManager():rm(ResourceManager::instance()) {};
+	RenderManager(const RenderManager& root) = delete;
+	RenderManager& operator=(const RenderManager&) = delete;
 public:
 	static RenderManager& instance()
 	{

@@ -25,4 +25,5 @@ public:
 	void setPosition(glm::vec3 position);
 	void setAngle(float degree);
 	void setMeshId(int newId);
+	void setTextureId(int newId);
 };

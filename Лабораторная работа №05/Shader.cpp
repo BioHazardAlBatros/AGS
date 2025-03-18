@@ -62,6 +62,7 @@ bool Shader::load(std::string vertexShaderName, std::string fragmentShaderName)
 		this->uniforms.insert({ "color",glGetUniformLocation(this->program, "color") });
 		this->uniforms.insert({ "projectionMatrix",glGetUniformLocation(this->program, "projectionMatrix") });
 		this->uniforms.insert({ "modelViewMatrix",glGetUniformLocation(this->program, "modelViewMatrix") });
+		this->uniforms.insert({ "texture_0",glGetUniformLocation(this->program, "texture_0") });
 
 		glDeleteShader(vertexShader);
 		glDeleteShader(fragmentShader);

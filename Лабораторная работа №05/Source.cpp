@@ -6,9 +6,9 @@
 
 LARGE_INTEGER startCounter, frequency;
 Camera camera;
-Shader shader;
 std::vector<GraphicObject> graphicObjects;
 ResourceManager& rm = ResourceManager::instance();
+RenderManager& renderMan = RenderManager::instance();
 
 double getSimulationTime()
 {
@@ -34,37 +34,11 @@ int getFPS()
 
 void display()
 {
-	static RenderManager& renderManager = RenderManager::instance();
-	
-	/*renderManager.start();
+	renderMan.start();
 	for (auto& graphObj : graphicObjects)
-		renderManager.addToRenderQueue(graphObj);
-	renderManager.finish();*/
+		renderMan.addToRenderQueue(graphObj);
+	renderMan.finish();
 	
-	
-	glClearColor(1.0, 1.0, 1.0, 1.0);
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
-	glEnable(GL_DEPTH_TEST);
-	
-	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-	glEnable(GL_CULL_FACE);
-	glCullFace(GL_BACK);
-
-	glm::mat4 viewMatrix = camera.getViewMatrix();
-
-	shader.activate();
-	shader.setUniform("projectionMatrix", camera.getProjectionMatrix());
-
-	for (auto& graphObj : graphicObjects) 
-	{
-		shader.setUniform("modelViewMatrix", viewMatrix * graphObj.getModelMatrix());
-		shader.setUniform("color", graphObj.getColor());
-		Mesh* mesh = rm.getMesh(graphObj.getMeshId());
-		if (mesh) mesh->drawOne();
-	}
-
-
 	glutSwapBuffers();
 
 	char temp[80];
@@ -122,6 +96,9 @@ void initGraphicObjects();
 
 void main(int argc, char** argv)
 {
+	ilInit();
+	iluInit();
+	ilutInit();
 	glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE | GLUT_DEPTH | GLUT_STENCIL | GLUT_MULTISAMPLE);
 	glutInitContextVersion(3, 3);
@@ -138,9 +115,8 @@ void main(int argc, char** argv)
 	}
 	printf("OpenGL Version = %s\n\n", glGetString(GL_VERSION));
 
-	if (!shader.load(R"(assets\shaders\VertexShader.vsh)", R"(assets\shaders\FragmentShader.fsh)"))
-		return; //MANUAL EXIT IF SHADERS DIDN'T COMPILE
-
+	renderMan.init();
+	renderMan.setCamera(&camera);
 	initGraphicObjects();
 	
 	QueryPerformanceCounter(&startCounter);
@@ -161,6 +137,7 @@ void initGraphicObjects()
 
 	//1
 	gObj.setMeshId(rm.loadMesh(R"(assets\meshes\buildings\house_2.obj)"));
+	gObj.setTextureId(rm.loadTexture(R"(assets\textures\buildings\house_2_orange.png)"));
 	gObj.setColor(glm::vec4{ 0.2, 0.2, 0.2, 1 });
 	gObj.setPosition(glm::vec3{ 0, 0, 0 });
 	gObj.setAngle(0.0);
@@ -168,6 +145,7 @@ void initGraphicObjects()
 
 	//2
 	gObj.setMeshId(rm.loadMesh(R"(assets\meshes\natures\big_tree.obj)"));
+	gObj.setTextureId(rm.loadTexture(R"(assets\textures\natures\nature.png)"));
 	gObj.setColor(glm::vec4{ 0.2, 0.8, 0.2, 1 });
 	gObj.setPosition(glm::vec3{ 7.5, -0.75, 2.5 });
 	gObj.setAngle(0.0);
@@ -175,6 +153,7 @@ void initGraphicObjects()
 
 	//3
 	gObj.setMeshId(rm.loadMesh(R"(assets\meshes\natures\big_tree.obj)"));
+	gObj.setTextureId(rm.loadTexture(R"(assets\textures\natures\nature.png)"));
 	gObj.setColor(glm::vec4{ 0.2, 0.8, 0.2, 1 });
 	gObj.setPosition(glm::vec3{ -7.5, -0.75, 2.5 });
 	gObj.setAngle(0.0);
@@ -182,6 +161,7 @@ void initGraphicObjects()
 
 	//4
 	gObj.setMeshId(rm.loadMesh(R"(assets\meshes\vehicles\police_car.obj)"));
+	gObj.setTextureId(rm.loadTexture(R"(assets\textures\vehicles\police_car.png)"));
 	gObj.setColor(glm::vec4{ 0.2, 0.2, 1.0, 1 });
 	gObj.setPosition(glm::vec3{ +4.5, -2.15, +6.5 });
 	gObj.setAngle(-115.0);
@@ -189,6 +169,7 @@ void initGraphicObjects()
 
 	//5
 	gObj.setMeshId(rm.loadMesh(R"(assets\meshes\vehicles\police_car.obj)"));
+	gObj.setTextureId(rm.loadTexture(R"(assets\textures\vehicles\police_car.png)"));
 	gObj.setColor(glm::vec4{0.23, 0.23, 1.0, 1});
 	gObj.setPosition(glm::vec3{ +4.25, -2.15, +10.5 });
 	gObj.setAngle(+105.0);
@@ -196,6 +177,7 @@ void initGraphicObjects()
 
 	//6
 	gObj.setMeshId(rm.loadMesh(R"(assets\meshes\vehicles\jeep.obj)"));
+	gObj.setTextureId(rm.loadTexture(R"(assets\textures\vehicles\jeep_purple.png)"));
 	gObj.setColor(glm::vec4{ 0.95, 0.13, 0.13, 1 });
 	gObj.setPosition(glm::vec3{ -1.25, -2.15, +9.0 });
 	gObj.setAngle(+170.0);
