@@ -12,6 +12,7 @@ out vec2 texCoord;
 
 void main()
 {
-   texCoord = vec2(vTexCoord.s, vTexCoord.t);
+// texCoord = vec2(vTexCoord.s, vTexCoord.t);
+   texCoord = vec2(vTexCoord.s, 1.0 - vTexCoord.t);
    gl_Position = projectionMatrix * modelViewMatrix * vec4(vPosition,1);
 }

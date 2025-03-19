@@ -86,8 +86,9 @@ bool Mesh::load(std::string sourceFile)
 				vertices.back().coord[2] = vert[fPoints.back()[0] - 1][2];
 
 				vertices.back().texCoord[0] = tex[fPoints.back()[1] - 1][0];
-				vertices.back().texCoord[1] = 1.0 - tex[fPoints.back()[1] - 1][1];
-				//vertices.back().texCoord[1] = tex[fPoints.back()[1] - 1][1];
+				//should be done this way, but the assigment asks not to use optimization
+				//vertices.back().texCoord[1] = 1.0 - tex[fPoints.back()[1] - 1][1];
+				vertices.back().texCoord[1] = tex[fPoints.back()[1] - 1][1];//
 
 				vertices.back().normal[0] = norm[fPoints.back()[2] - 1][0];
 				vertices.back().normal[1] = norm[fPoints.back()[2] - 1][1];
