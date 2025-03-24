@@ -103,7 +103,8 @@ void main(int argc, char** argv)
 	iluInit();
 	ilutInit();
 	glutInit(&argc, argv);
-	renderMan.init();
+	if (!renderMan.init())
+		return;
 	renderMan.setCamera(&camera);
 	initGraphicObjects();
 	

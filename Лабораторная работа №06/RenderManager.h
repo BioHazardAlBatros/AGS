@@ -25,7 +25,7 @@ public:
 		return renderManager;
 	}
 
-	void init();
+	bool init();
 	void start();
 	void setCamera(Camera* camera);
 	void addToRenderQueue(GraphicObject& graphicObject);

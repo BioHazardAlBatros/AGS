@@ -60,7 +60,7 @@ bool Shader::load(std::string vertexShaderName, std::string fragmentShaderName)
 	{
 		GLint uniformCount, uniformSize; 
 		GLenum uniformType;
-		GLchar uniformName[16];
+		GLchar uniformName[30];
 		GLsizei length;
 
 		printf("Shader compiled. Seeking uniform variables...\n");
@@ -70,7 +70,7 @@ bool Shader::load(std::string vertexShaderName, std::string fragmentShaderName)
 			printf("No uniforms found.\n");
 		for (GLint i = 0; i < uniformCount; i++)
 		{
-			glGetActiveUniform(program, (GLuint)i, (const GLsizei)16, &length, &uniformSize, &uniformType, uniformName);
+			glGetActiveUniform(program, (GLuint)i, (const GLsizei)30, &length, &uniformSize, &uniformType, uniformName);
 
 			printf("Found new uniform #%d TypeID: %u Name: %s\n", i, uniformType, (char*)uniformName);
 			this->uniforms.insert({ uniformName,glGetUniformLocation(this->program, uniformName) });

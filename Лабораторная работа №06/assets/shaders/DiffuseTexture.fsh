@@ -12,6 +12,12 @@ uniform vec4 lDiffuse;
 uniform vec4 lSpecular;
 uniform vec4 lPosition;
 
+uniform vec4 fogColor;
+uniform float fogStartDistance;
+uniform float fogEndDistance;
+uniform float fogDensity;
+
+
 in vec3 position;
 in vec3 normal;
 in vec2 texCoord;
@@ -35,5 +41,8 @@ void main (void)
 	vec4 texColor = texture(texture_0, texCoord);
 	color = color * vec3(texColor);	
 	
-	outputColor = vec4(color, alpha);
+	float fragmentDistance = length(position);
+	float A = exp(-fogDensity * clamp((fragmentDistance -fogStartDistance) / (fogEndDistance - fogStartDistance), 0.0, 1.0));
+
+	outputColor = mix(fogColor,vec4(color, alpha),A);
 }

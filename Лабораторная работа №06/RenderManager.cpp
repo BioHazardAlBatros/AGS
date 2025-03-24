@@ -1,6 +1,6 @@
 #include "RenderManager.h"
 
-void RenderManager::init() 
+bool RenderManager::init() 
 {
 	glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE | GLUT_DEPTH | GLUT_STENCIL | GLUT_MULTISAMPLE);
 	glutInitContextVersion(3, 3);
@@ -13,14 +13,15 @@ void RenderManager::init()
 	if (GLEW_OK != err)
 	{
 		fprintf(stderr, "Glew error: %s\n", glewGetErrorString(err));
-		return;
+		return false;
 	}
 	printf("OpenGL Version = %s\n\n", glGetString(GL_VERSION));
 
 	Shader shader;
 	if (!shader.load(R"(assets\shaders\DiffuseTexture.vsh)", R"(assets\shaders\DiffuseTexture.fsh)"))
-		return;
+		return false;
 	this->shaders.push_back(shader);
+	return true;
 }
 void RenderManager::start() 
 {
@@ -38,6 +39,10 @@ void RenderManager::start()
 	this->shaders[0].setUniform("projectionMatrix", this->camera->getProjectionMatrix());
 	this->shaders[0].setUniform("texture_0", 0);
 
+	this->shaders[0].setUniform("fogColor", { 0.7, 0.8, 1.0, 1.0 });
+	this->shaders[0].setUniform("fogStartDistance", 70.0f);
+	this->shaders[0].setUniform("fogEndDistance", 150.0f);
+	this->shaders[0].setUniform("fogDensity", 1.0f);
 	glActiveTexture(GL_TEXTURE0);
 }
 void RenderManager::setCamera(Camera* camera) 
