@@ -8,7 +8,7 @@
 
 LARGE_INTEGER startCounter, frequency;
 Camera camera;
-Light sun;
+//Light sun;
 std::vector<GraphicObject> graphicObjects;
 ResourceManager& rm = ResourceManager::instance();
 RenderManager& renderMan = RenderManager::instance();
@@ -46,7 +46,7 @@ void display()
 
 	char temp[80];
 	int FPS = getFPS();
-	sprintf_s(temp, "Lab5 FPS[%d]", FPS);
+	sprintf_s(temp, "Lab6 FPS[%d]", FPS);
 	glutSetWindowTitle(temp);
 }
 

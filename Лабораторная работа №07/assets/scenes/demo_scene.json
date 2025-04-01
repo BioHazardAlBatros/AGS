@@ -1,0 +1,32 @@
+[
+    {
+        "model": "big_tree",
+        "position": [ 7.5, -0.75, 2.5 ],
+        "angle": 0.0
+    },
+    {
+        "model": "house_2_or",
+        "position": [ 0.0, 0.0, 0.0 ],
+        "angle": 0.0
+    },
+    {
+        "model": "big_tree",
+        "position": [ -7.5, -0.75, 2.5 ],
+        "angle": 0.0
+    },
+    {
+        "model": "police",
+        "position": [ 4.5, -2.15, 6.5 ],
+        "angle": -115.0
+    },	
+    {
+        "model": "jeep_grn",
+        "position": [ -1.25, -2.15, 9.0 ],
+        "angle": 170.0
+    },	
+    {
+        "model": "police",
+        "position": [ 4.25, -2.15, 10.5 ],
+        "angle": 105.0
+    }
+]

@@ -1,0 +1,20 @@
+# Mesh: tile_small
+
+# List of geometric vertices
+v -2.6247 -0.0000 2.6247
+v 2.6247 -0.0000 2.6247
+v 2.6247 0.0000 -2.6247
+v -2.6247 0.0000 -2.6247
+
+# List of vertex normals
+vn 0.0000 1.0000 0.0000
+
+# List of texture coordinates
+vt 0.5250 0.4750
+vt 0.4750 0.5250
+vt 0.4750 0.4750
+vt 0.5250 0.5250
+
+# List of polygonal faces
+f 2/1/1 4/2/1 1/3/1
+f 2/1/1 3/4/1 4/2/1
