@@ -1,0 +1,857 @@
+[
+    {
+        "model": "super_m",
+        "position": [
+            -1.5,
+            1.989,
+            -0.39
+        ],
+        "angle": -0.0
+    },
+    {
+        "model": "sky_s_or",
+        "position": [
+            6.88,
+            4.443,
+            -7.6
+        ],
+        "angle": 180.0
+    },
+    {
+        "model": "sky_s_rd",
+        "position": [
+            -6.56,
+            4.443,
+            -7.5
+        ],
+        "angle": 180.0
+    },
+    {
+        "model": "solar_pan",
+        "position": [
+            -4.76,
+            8.861,
+            -5.61
+        ],
+        "angle": 135.0
+    },
+    {
+        "model": "solar_pan",
+        "position": [
+            -5.06,
+            8.861,
+            -7.4
+        ],
+        "angle": 135.0
+    },
+    {
+        "model": "solar_pan",
+        "position": [
+            -6.56,
+            8.861,
+            -5.9
+        ],
+        "angle": 135.0
+    },
+    {
+        "model": "fast_food",
+        "position": [
+            0.15,
+            2.561,
+            -6.9
+        ],
+        "angle": 180.0
+    },
+    {
+        "model": "dustbin",
+        "position": [
+            -8.33,
+            0.292,
+            0.86
+        ],
+        "angle": -0.0
+    },
+    {
+        "model": "dustbin",
+        "position": [
+            -2.44,
+            0.292,
+            -9.5
+        ],
+        "angle": -0.0
+    },
+    {
+        "model": "bench_1",
+        "position": [
+            1.03,
+            0.243,
+            -9.86
+        ],
+        "angle": 180.0
+    },
+    {
+        "model": "bus_stop",
+        "position": [
+            -9.34,
+            1.306,
+            -1.2
+        ],
+        "angle": 90.0
+    },
+    {
+        "model": "bench_1",
+        "position": [
+            -9.18,
+            0.243,
+            -1.19
+        ],
+        "angle": 90.0
+    },
+    {
+        "model": "road_sh",
+        "position": [
+            -10.33,
+            0.052,
+            9.4
+        ],
+        "angle": -0.0
+    },
+    {
+        "model": "road_sh",
+        "position": [
+            -9.19,
+            0.052,
+            10.35
+        ],
+        "angle": 90.0
+    },
+    {
+        "model": "road_sh",
+        "position": [
+            -10.33,
+            0.052,
+            7.3
+        ],
+        "angle": -0.0
+    },
+    {
+        "model": "road_sh",
+        "position": [
+            -9.19,
+            0.052,
+            8.35
+        ],
+        "angle": 90.0
+    },
+    {
+        "model": "road_sh",
+        "position": [
+            -10.33,
+            0.052,
+            5.2
+        ],
+        "angle": -0.0
+    },
+    {
+        "model": "road_sh",
+        "position": [
+            -10.32,
+            0.052,
+            3.1
+        ],
+        "angle": -0.0
+    },
+    {
+        "model": "road_sh",
+        "position": [
+            -9.19,
+            0.052,
+            6.25
+        ],
+        "angle": 90.0
+    },
+    {
+        "model": "road_sh",
+        "position": [
+            -9.19,
+            0.052,
+            4.12
+        ],
+        "angle": 90.0
+    },
+    {
+        "model": "road_sh",
+        "position": [
+            -9.19,
+            0.052,
+            2.14
+        ],
+        "angle": 90.0
+    },
+    {
+        "model": "car_wh",
+        "position": [
+            -8.47,
+            0.576,
+            9.3
+        ],
+        "angle": 180.0
+    },
+    {
+        "model": "car_gry",
+        "position": [
+            -8.48,
+            0.576,
+            7.32
+        ],
+        "angle": 180.0
+    },
+    {
+        "model": "bar",
+        "position": [
+            8.4,
+            2.733,
+            -1.9
+        ],
+        "angle": -0.0
+    },
+    {
+        "model": "roof_pr_a",
+        "position": [
+            9.3,
+            5.626,
+            -2.2
+        ],
+        "angle": 90.0
+    },
+    {
+        "model": "house_fl",
+        "position": [
+            5.47,
+            0.052,
+            2.621
+        ],
+        "angle": -0.0
+    },
+    {
+        "model": "house_fl",
+        "position": [
+            5.47,
+            0.052,
+            7.87
+        ],
+        "angle": -0.0
+    },
+    {
+        "model": "road_sh",
+        "position": [
+            -7.09,
+            0.052,
+            10.35
+        ],
+        "angle": 90.0
+    },
+    {
+        "model": "road_sh",
+        "position": [
+            3.64,
+            0.052,
+            10.35
+        ],
+        "angle": 90.0
+    },
+    {
+        "model": "road_sh",
+        "position": [
+            3.64,
+            0.052,
+            8.35
+        ],
+        "angle": 90.0
+    },
+    {
+        "model": "road_sh",
+        "position": [
+            3.64,
+            0.052,
+            6.25
+        ],
+        "angle": 90.0
+    },
+    {
+        "model": "road_sh",
+        "position": [
+            3.64,
+            0.052,
+            4.12
+        ],
+        "angle": 90.0
+    },
+    {
+        "model": "jeep_pu",
+        "position": [
+            2.9,
+            0.597,
+            7.32
+        ],
+        "angle": 180.0
+    },
+    {
+        "model": "car_bl",
+        "position": [
+            2.9,
+            0.576,
+            5.18
+        ],
+        "angle": 180.0
+    },
+    {
+        "model": "car_bl",
+        "position": [
+            2.9,
+            0.576,
+            3.14
+        ],
+        "angle": 180.0
+    },
+    {
+        "model": "road_sh",
+        "position": [
+            7.3,
+            0.052,
+            10.35
+        ],
+        "angle": 90.0
+    },
+    {
+        "model": "road_sh",
+        "position": [
+            7.3,
+            0.052,
+            8.31
+        ],
+        "angle": 90.0
+    },
+    {
+        "model": "road_sh",
+        "position": [
+            7.3,
+            0.052,
+            6.25
+        ],
+        "angle": 90.0
+    },
+    {
+        "model": "road_sh",
+        "position": [
+            7.3,
+            0.052,
+            4.12
+        ],
+        "angle": 90.0
+    },
+    {
+        "model": "traf_cone",
+        "position": [
+            8.11,
+            0.242,
+            9.33
+        ],
+        "angle": -0.0
+    },
+    {
+        "model": "car_bl",
+        "position": [
+            8.11,
+            0.576,
+            7.32
+        ],
+        "angle": 180.0
+    },
+    {
+        "model": "taxi",
+        "position": [
+            8.11,
+            0.639,
+            5.18
+        ],
+        "angle": -0.0
+    },
+    {
+        "model": "jeep_grn",
+        "position": [
+            8.11,
+            0.597,
+            3.14
+        ],
+        "angle": -0.0
+    },
+    {
+        "model": "billbrd_s",
+        "position": [
+            9.95,
+            0.689,
+            10.32
+        ],
+        "angle": -0.0
+    },
+    {
+        "model": "house_fl",
+        "position": [
+            7.87,
+            0.052,
+            0.79
+        ],
+        "angle": -90.0
+    },
+    {
+        "model": "road_sh",
+        "position": [
+            1.55,
+            0.052,
+            10.35
+        ],
+        "angle": 90.0
+    },
+    {
+        "model": "pot_bu_b",
+        "position": [
+            5.4,
+            0.346,
+            -1.0
+        ],
+        "angle": -0.0
+    },
+    {
+        "model": "tile",
+        "position": [
+            -5.249,
+            0.0,
+            -5.249
+        ],
+        "angle": -0.0
+    },
+    {
+        "model": "tile",
+        "position": [
+            -5.249,
+            0.0,
+            5.249
+        ],
+        "angle": -0.0
+    },
+    {
+        "model": "tile",
+        "position": [
+            5.249,
+            0.0,
+            -5.249
+        ],
+        "angle": -0.0
+    },
+    {
+        "model": "tile",
+        "position": [
+            5.249,
+            0.0,
+            5.249
+        ],
+        "angle": -0.0
+    },
+    {
+        "model": "light",
+        "position": [
+            -19.248,
+            1.74,
+            -15.748
+        ],
+        "angle": 180.0
+    },
+    {
+        "model": "light",
+        "position": [
+            -15.748,
+            1.74,
+            -19.248
+        ],
+        "angle": -90.0
+    },
+    {
+        "model": "signal_b",
+        "position": [
+            -10.499,
+            1.633,
+            -19.198
+        ],
+        "angle": -90.0
+    },
+    {
+        "model": "signal_b",
+        "position": [
+            -12.298,
+            1.633,
+            -10.499
+        ],
+        "angle": -0.0
+    },
+    {
+        "model": "road_cor_1",
+        "position": [
+            -15.748,
+            0.0,
+            -15.748
+        ],
+        "angle": -0.0
+    },
+    {
+        "model": "light",
+        "position": [
+            19.248,
+            1.74,
+            -15.748
+        ],
+        "angle": -0.0
+    },
+    {
+        "model": "light",
+        "position": [
+            15.748,
+            1.74,
+            -19.248
+        ],
+        "angle": -90.0
+    },
+    {
+        "model": "signal_b",
+        "position": [
+            10.499,
+            1.633,
+            -12.298
+        ],
+        "angle": 90.0
+    },
+    {
+        "model": "signal_b",
+        "position": [
+            19.198,
+            1.633,
+            -10.499
+        ],
+        "angle": -0.0
+    },
+    {
+        "model": "road_cor_1",
+        "position": [
+            15.748,
+            0.0,
+            -15.748
+        ],
+        "angle": 90.0
+    },
+    {
+        "model": "road_ln_1",
+        "position": [
+            -5.249,
+            0.0,
+            -15.748
+        ],
+        "angle": -90.0
+    },
+    {
+        "model": "light",
+        "position": [
+            -5.249,
+            1.74,
+            -19.248
+        ],
+        "angle": -90.0
+    },
+    {
+        "model": "light",
+        "position": [
+            -5.249,
+            1.74,
+            -12.248
+        ],
+        "angle": 90.0
+    },
+    {
+        "model": "road_ln_1",
+        "position": [
+            5.249,
+            0.0,
+            -15.748
+        ],
+        "angle": -90.0
+    },
+    {
+        "model": "light",
+        "position": [
+            5.249,
+            1.74,
+            -19.248
+        ],
+        "angle": -90.0
+    },
+    {
+        "model": "light",
+        "position": [
+            5.249,
+            1.74,
+            -12.248
+        ],
+        "angle": 90.0
+    },
+    {
+        "model": "light",
+        "position": [
+            -19.248,
+            1.74,
+            15.748
+        ],
+        "angle": 180.0
+    },
+    {
+        "model": "light",
+        "position": [
+            -15.748,
+            1.74,
+            19.248
+        ],
+        "angle": 90.0
+    },
+    {
+        "model": "signal_b",
+        "position": [
+            -10.499,
+            1.633,
+            12.298
+        ],
+        "angle": -90.0
+    },
+    {
+        "model": "signal_b",
+        "position": [
+            -19.198,
+            1.633,
+            10.499
+        ],
+        "angle": 180.0
+    },
+    {
+        "model": "road_cor_1",
+        "position": [
+            -15.748,
+            0.0,
+            15.748
+        ],
+        "angle": -90.0
+    },
+    {
+        "model": "road_ln_1",
+        "position": [
+            -15.748,
+            0.0,
+            -5.249
+        ],
+        "angle": -0.0
+    },
+    {
+        "model": "light",
+        "position": [
+            -19.248,
+            1.74,
+            -5.249
+        ],
+        "angle": 180.0
+    },
+    {
+        "model": "light",
+        "position": [
+            -12.248,
+            1.74,
+            -5.249
+        ],
+        "angle": -0.0
+    },
+    {
+        "model": "road_ln_1",
+        "position": [
+            -15.748,
+            0.0,
+            5.249
+        ],
+        "angle": -0.0
+    },
+    {
+        "model": "light",
+        "position": [
+            -19.248,
+            1.74,
+            5.249
+        ],
+        "angle": 180.0
+    },
+    {
+        "model": "light",
+        "position": [
+            -12.248,
+            1.74,
+            5.249
+        ],
+        "angle": -0.0
+    },
+    {
+        "model": "light",
+        "position": [
+            19.248,
+            1.74,
+            15.748
+        ],
+        "angle": -0.0
+    },
+    {
+        "model": "light",
+        "position": [
+            15.748,
+            1.74,
+            19.248
+        ],
+        "angle": 90.0
+    },
+    {
+        "model": "signal_s",
+        "position": [
+            10.499,
+            1.53,
+            19.748
+        ],
+        "angle": 90.0
+    },
+    {
+        "model": "signal_s",
+        "position": [
+            11.748,
+            1.53,
+            10.499
+        ],
+        "angle": 180.0
+    },
+    {
+        "model": "road_cor_1",
+        "position": [
+            15.748,
+            0.0,
+            15.748
+        ],
+        "angle": 180.0
+    },
+    {
+        "model": "road_ln_1",
+        "position": [
+            -5.249,
+            0.0,
+            15.748
+        ],
+        "angle": -90.0
+    },
+    {
+        "model": "light",
+        "position": [
+            -5.249,
+            1.74,
+            12.248
+        ],
+        "angle": -90.0
+    },
+    {
+        "model": "light",
+        "position": [
+            -5.249,
+            1.74,
+            19.248
+        ],
+        "angle": 90.0
+    },
+    {
+        "model": "road_ln_1",
+        "position": [
+            5.249,
+            0.0,
+            15.748
+        ],
+        "angle": -90.0
+    },
+    {
+        "model": "light",
+        "position": [
+            5.249,
+            1.74,
+            12.248
+        ],
+        "angle": -90.0
+    },
+    {
+        "model": "light",
+        "position": [
+            5.249,
+            1.74,
+            19.248
+        ],
+        "angle": 90.0
+    },
+    {
+        "model": "road_ln_1",
+        "position": [
+            15.748,
+            0.0,
+            -5.249
+        ],
+        "angle": -0.0
+    },
+    {
+        "model": "light",
+        "position": [
+            12.248,
+            1.74,
+            -5.249
+        ],
+        "angle": 180.0
+    },
+    {
+        "model": "light",
+        "position": [
+            19.248,
+            1.74,
+            -5.249
+        ],
+        "angle": -0.0
+    },
+    {
+        "model": "road_ln_1",
+        "position": [
+            15.748,
+            0.0,
+            5.249
+        ],
+        "angle": -0.0
+    },
+    {
+        "model": "light",
+        "position": [
+            12.248,
+            1.74,
+            5.249
+        ],
+        "angle": 180.0
+    },
+    {
+        "model": "light",
+        "position": [
+            19.248,
+            1.74,
+            5.249
+        ],
+        "angle": -0.0
+    }
+]
